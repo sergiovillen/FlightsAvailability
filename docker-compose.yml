@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  redis:
+    image: redis:alpine
+
+  zipkin:
+    image: openzipkin/zipkin-slim
+
+  search-service:
+    image: ${REGISTRY:-flights-availability}/search.service:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: FlightsAvailability.Search.Service/Dockerfile
+    depends_on:      
+      - rabbitmq
+
+  search-service-dapr:
+    image: "daprio/daprd:edge"
+    network_mode: "service:search-service"
+    depends_on:
+      - search-service

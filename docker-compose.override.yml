@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+
+  rabbitmq:
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "5379:6379"
+
+  zipkin:
+    ports:
+      - "9411:9411"
+
+  search-service:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5110:80"
+      - "50001:50001"
+
+  search-service-dapr:
+    command: ["./daprd",
+      "-app-id", "search-service",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/flights-availability-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
