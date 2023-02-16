@@ -34,3 +34,22 @@ services:
     volumes:
       - "./dapr/components/:/components"
       - "./dapr/configuration/:/configuration"
+
+  search-agent-skyscanner:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5120:80"
+      - "50002:50002"
+
+  search-agent-skyscanner-dapr:
+    command: ["./daprd",
+      "-app-id", "search-agent-skyscanner",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/flights-availability-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"

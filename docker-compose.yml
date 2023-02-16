@@ -24,3 +24,17 @@ services:
     network_mode: "service:search-service"
     depends_on:
       - search-service
+
+  search-agent-skyscanner:
+    image: ${REGISTRY:-flights-availability}/search.agent.skyscanner:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: FlightsAvailability.Search.Agent.Skyscanner/Dockerfile
+    depends_on:      
+      - rabbitmq
+
+  search-agent-skyscanner-dapr:
+    image: "daprio/daprd:edge"
+    network_mode: "service:search-agent-skyscanner"
+    depends_on:
+      - search-agent-skyscanner
