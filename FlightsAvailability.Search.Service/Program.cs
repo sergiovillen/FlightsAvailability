@@ -1,3 +1,5 @@
+using FlightsAvailability.Search.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Dapr
+builder.AddCustomMvc();
+builder.AddCustomHealthChecks();
+//Application Services
+builder.AddCustomApplicationServices();
 
 var app = builder.Build();
 
