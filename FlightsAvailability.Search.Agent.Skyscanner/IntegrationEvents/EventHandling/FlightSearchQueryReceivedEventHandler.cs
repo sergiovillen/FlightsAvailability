@@ -49,14 +49,27 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
             var searchCreateResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_SKYSCANNER_SEARCH_CREATE, "post", data, (IReadOnlyDictionary<string, string>) metadata);
 
             var response = JsonSerializer.Deserialize<SkyscannerResponse>(searchCreateResponse.ToString())!;
+            int retry = 1;
+            await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent() {
+                ParentEventId = @event.Id,
+                Retry = retry,
+                Response = response
+            });
             if (response != null && response.status == "RESULT_STATUS_INCOMPLETE")
             {
                 metadata.Add("path", response.sessionToken);
                 var responseStatus = response.status;
                 while (responseStatus == "RESULT_STATUS_INCOMPLETE")
                 {
+                    retry++;
                     var searchPollResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_SKYSCANNER_SEARCH_POLL, "post", string.Empty, (IReadOnlyDictionary<string, string>)metadata);
                     var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(searchPollResponse.ToString())!;
+                    await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
+                    {
+                        ParentEventId = @event.Id,
+                        Retry = retry,
+                        Response = pollResponse
+                    });
                     responseStatus = pollResponse.status;
                 }
             }
@@ -65,7 +78,7 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
             //request.Data = data;
             //var response = await _daprClient.InvokeBindingAsync(request);
 
-            await Task.Delay(3000);
+            //await Task.Delay(3000);
         }
     }
 }
