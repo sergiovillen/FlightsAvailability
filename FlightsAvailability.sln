@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{E7B5F6E8-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{860F70F1-89EA-48F8-A854-A5F285C58CDC}"
 	ProjectSection(SolutionItems) = preProject
+		dapr\components\flights-availability-binding-skyscanner.yaml = dapr\components\flights-availability-binding-skyscanner.yaml
 		dapr\components\flights-availability-pubsub.yaml = dapr\components\flights-availability-pubsub.yaml
 	EndProjectSection
 EndProject
@@ -31,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus", "EventBus\EventB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agents", "Agents", "{B8940B32-1528-4F94-9CE8-6C6F155437FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.Agent.Skyscanner", "FlightsAvailability.Search.Agent.Skyscanner\FlightsAvailability.Search.Agent.Skyscanner.csproj", "{D8D5328E-E778-4AD1-90E9-8722F866F282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.Agent.Skyscanner", "FlightsAvailability.Search.Agent.Skyscanner\FlightsAvailability.Search.Agent.Skyscanner.csproj", "{D8D5328E-E778-4AD1-90E9-8722F866F282}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthchecks", "Healthchecks\Healthchecks.csproj", "{A62BF3DD-8D01-471D-A7AE-CAC37F4165AB}"
 EndProject

@@ -1,0 +1,11 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: flights-availability-binding-skyscanner
+  namespace: flights-availability
+spec:
+  type: bindings.http
+  version: v1
+  metadata:
+  - name: url
+    value: "https://partners.api.skyscanner.net/apiservices/v3/geo/hierarchy/flights/es-ES"
