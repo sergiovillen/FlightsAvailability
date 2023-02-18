@@ -9,8 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{E7B5F6E8-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{860F70F1-89EA-48F8-A854-A5F285C58CDC}"
 	ProjectSection(SolutionItems) = preProject
-		dapr\components\flights-availability-binding-skyscanner.yaml = dapr\components\flights-availability-binding-skyscanner.yaml
+		dapr\components\flights-availability-binding-skyscanner-search-poll.yaml = dapr\components\flights-availability-binding-skyscanner-search-poll.yaml
 		dapr\components\flights-availability-pubsub.yaml = dapr\components\flights-availability-pubsub.yaml
+		dapr\components\flights-availability-binding-skyscanner-search-create.yaml = dapr\components\flights-availability-binding-skyscanner-search-create.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{D0B1CBD1-1129-4847-8579-6935158E49D3}"
