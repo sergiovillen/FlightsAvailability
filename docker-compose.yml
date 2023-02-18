@@ -38,3 +38,17 @@ services:
     network_mode: "service:search-agent-skyscanner"
     depends_on:
       - search-agent-skyscanner
+
+  search-agent-amadeus:
+    image: ${REGISTRY:-flights-availability}/search.agent.amadeus:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: FlightsAvailability.Search.Agent.Amadeus/Dockerfile
+    depends_on:      
+      - rabbitmq
+
+  search-agent-amadeus-dapr:
+    image: "daprio/daprd:edge"
+    network_mode: "service:search-agent-amadeus"
+    depends_on:
+      - search-agent-amadeus
