@@ -1,0 +1,11 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: amadeus-flight-offers
+  namespace: flights-availability
+spec:
+  type: bindings.http
+  version: v1
+  metadata:
+  - name: url
+    value: "https://test.api.amadeus.com/v2/shopping/flight-offers"

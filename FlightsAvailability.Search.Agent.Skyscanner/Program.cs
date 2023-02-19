@@ -3,6 +3,8 @@ using Healthchecks;
 using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
+//Dapr
+builder.AddCustomConfiguration();
 
 // Add services to the container.
 

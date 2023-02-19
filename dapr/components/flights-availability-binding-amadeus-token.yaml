@@ -1,0 +1,11 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: amadeus-token
+  namespace: flights-availability
+spec:
+  type: bindings.http
+  version: v1
+  metadata:
+  - name: url
+    value: "https://test.api.amadeus.com/v1/security/oauth2/token"

@@ -7,16 +7,8 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
 {
     public class FlightSearchQueryReceivedEventHandler : IIntegrationEventHandler<FlightSearchQueryReceivedEvent>
     {
-        private const string DAPR_BINDING_SKYSCANNER_SEARCH_CREATE = "skyscanner-search-create";
-        private const string DAPR_BINDING_SKYSCANNER_SEARCH_POLL = "skyscanner-search-poll";
-        private const string SKYSCANNER_API_KEY = "prtl6749387986743898559646983194";
-        private const string SKYSCANNER_API_KEY_HEADER_NAME = "X-api-key";
-        private const string SKYSCANNER_PARAM_MARKET = "ES";
-        private const string SKYSCANNER_PARAM_LOCALE = "es-ES";
-        private const string SKYSCANNER_PARAM_CURRENCY = "EUR";
-        private const int SKYSCANNER_PARAM_ADULTS = 1;
-        private const string SKYSCANNER_PARAM_CABIN_CLASS = "CABIN_CLASS_ECONOMY";
-        private const string SKYSCANNER_RESULT_STATUS_INCOMPLETE = "RESULT_STATUS_INCOMPLETE";
+        private const string SECRET_STORE_NAME = "flights-availability-secretstore";
+        private const string AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME = "amaudeus-api-client-credentials";
         private readonly IEventBus _eventBus;
         private readonly ILogger _logger;
         private readonly DaprClient _daprClient;
@@ -32,10 +24,7 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
         }
         public async Task Handle(FlightSearchQueryReceivedEvent @event)
         {
-            var metadata = new Dictionary<string, string>();
-            metadata.Add(SKYSCANNER_API_KEY_HEADER_NAME, SKYSCANNER_API_KEY);
-            
-         
+            var clientId = await _daprClient.GetSecretAsync(SECRET_STORE_NAME, AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME);
         }
     }
 }

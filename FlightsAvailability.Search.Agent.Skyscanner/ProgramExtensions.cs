@@ -3,11 +3,22 @@ using EventBus;
 using Healthchecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHandling;
+using Dapr.Client;
+using Dapr.Extensions.Configuration;
 
 namespace FlightsAvailability.Search.Agent.Skyscanner
 {
     public static class ProgramExtensions
     {
+        private const string SECRET_STORE_NAME = "flights-availability-secretstore";
+
+        public static void AddCustomConfiguration(this WebApplicationBuilder builder)
+        {
+            builder.Configuration.AddDaprSecretStore(
+               SECRET_STORE_NAME,
+               new DaprClientBuilder().Build(), TimeSpan.FromSeconds(10));
+        }
+
         public static void AddCustomMvc(this WebApplicationBuilder builder)
         {
             // TODO DaprClient good enough?
