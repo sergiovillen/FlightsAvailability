@@ -8,4 +8,4 @@ spec:
   version: v1
   metadata:
   - name: url
-    value: "https://test.api.amadeus.com/v2/shopping/flight-offers"
+    value: "https://test.api.amadeus.com/v2/shopping"
