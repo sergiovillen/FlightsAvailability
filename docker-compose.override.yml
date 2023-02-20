@@ -54,6 +54,25 @@ services:
       - "./dapr/components/:/components"
       - "./dapr/configuration/:/configuration"
 
+  search-results-processor-skyscanner:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5150:80"
+      - "50005:50005"
+
+  search-results-processor-skyscanner-dapr:
+    command: ["./daprd",
+      "-app-id", "search-results-processor-skyscanner",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/flights-availability-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
   search-agent-amadeus:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -79,7 +98,7 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
       - "5140:80"
-      - "50004:50003"
+      - "50004:50004"
 
   search-results-processor-amadeus-dapr:
     command: ["./daprd",

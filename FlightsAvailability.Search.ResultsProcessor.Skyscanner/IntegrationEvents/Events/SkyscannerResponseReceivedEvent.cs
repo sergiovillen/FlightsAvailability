@@ -1,7 +1,7 @@
 ﻿using EventBus.Events;
-using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.BindingResponses;
+using FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.BindingResponses;
 
-namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Events
+namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.Events
 {
     public record SkyscannerResponseReceivedEvent : RawIntegrationEvent
     {

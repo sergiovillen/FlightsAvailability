@@ -63,7 +63,7 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
                 ParentEventId = @event.Id,
                 QueryKey = @event.QueryKey,
                 Retry = retry,
-                Response = response
+                RawData = searchCreateResponse.ToString()
             });
             if (response != null && response.status == SKYSCANNER_RESULT_STATUS_INCOMPLETE)
             {
@@ -81,7 +81,7 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
                             ParentEventId = @event.Id,
                             QueryKey = @event.QueryKey,
                             Retry = retry,
-                            Response = pollResponse
+                            RawData = pollResponse.ToString()
                         });
                         responseStatus = pollResponse.status;
                     }
