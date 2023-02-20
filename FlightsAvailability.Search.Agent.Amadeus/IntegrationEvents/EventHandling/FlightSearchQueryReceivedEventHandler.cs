@@ -52,6 +52,7 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
             await _eventBus.PublishAsync(new AmadeusResponseReceivedEvent()
             {
                 ParentEventId = @event.Id,
+                QueryKey = @event.QueryKey,
                 RawData = searchPollResponse.ToString()
             });
         }

@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 	ProjectSection(SolutionItems) = preProject
 		dapr\components\flights-availability-binding-amadeus-flight-offers.yaml = dapr\components\flights-availability-binding-amadeus-flight-offers.yaml
 		dapr\components\flights-availability-binding-amadeus-token.yaml = dapr\components\flights-availability-binding-amadeus-token.yaml
+		dapr\components\flights-availability-binding-skyscanner-search-create.yaml = dapr\components\flights-availability-binding-skyscanner-search-create.yaml
 		dapr\components\flights-availability-binding-skyscanner-search-poll.yaml = dapr\components\flights-availability-binding-skyscanner-search-poll.yaml
 		dapr\components\flights-availability-pubsub.yaml = dapr\components\flights-availability-pubsub.yaml
-		dapr\components\flights-availability-binding-skyscanner-search-create.yaml = dapr\components\flights-availability-binding-skyscanner-search-create.yaml
 		dapr\components\flights-availability-secrets.json = dapr\components\flights-availability-secrets.json
 		dapr\components\flights-availability-secretstore.yaml = dapr\components\flights-availability-secretstore.yaml
 	EndProjectSection
@@ -41,7 +41,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healthchecks", "Healthchecks\Healthchecks.csproj", "{A62BF3DD-8D01-471D-A7AE-CAC37F4165AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.Agent.Amadeus", "FlightsAvailability.Search.Agent.Amadeus\FlightsAvailability.Search.Agent.Amadeus.csproj", "{A6E01CE7-D69F-4D62-856E-39F956140B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.Agent.Amadeus", "FlightsAvailability.Search.Agent.Amadeus\FlightsAvailability.Search.Agent.Amadeus.csproj", "{A6E01CE7-D69F-4D62-856E-39F956140B56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Amadeus", "Amadeus", "{A9479C42-1C90-4692-85AE-7DCF760D2243}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Skyscanner", "Skyscanner", "{80198106-90EF-4F48-90E6-F54953190510}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Entities", "FlightsAvailability.Entities\FlightsAvailability.Entities.csproj", "{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.ResultsProcessor.Amadeus", "FlightsAvailability.Search.ResultsProcessor.Amadeus\FlightsAvailability.Search.ResultsProcessor.Amadeus.csproj", "{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +81,14 @@ Global
 		{A6E01CE7-D69F-4D62-856E-39F956140B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E01CE7-D69F-4D62-856E-39F956140B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E01CE7-D69F-4D62-856E-39F956140B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,9 +102,13 @@ Global
 		{69DD9FB8-DB2D-46A6-A062-D64D250E8E6C} = {20790B1E-0904-408B-97B3-13EC30148BA2}
 		{A9DE46EC-32DE-47BE-98F3-1096B317B3C7} = {69DD9FB8-DB2D-46A6-A062-D64D250E8E6C}
 		{B8940B32-1528-4F94-9CE8-6C6F155437FE} = {12416715-BBA7-4DE1-A765-0DA3E31B3CCC}
-		{D8D5328E-E778-4AD1-90E9-8722F866F282} = {B8940B32-1528-4F94-9CE8-6C6F155437FE}
+		{D8D5328E-E778-4AD1-90E9-8722F866F282} = {80198106-90EF-4F48-90E6-F54953190510}
 		{A62BF3DD-8D01-471D-A7AE-CAC37F4165AB} = {69DD9FB8-DB2D-46A6-A062-D64D250E8E6C}
-		{A6E01CE7-D69F-4D62-856E-39F956140B56} = {B8940B32-1528-4F94-9CE8-6C6F155437FE}
+		{A6E01CE7-D69F-4D62-856E-39F956140B56} = {A9479C42-1C90-4692-85AE-7DCF760D2243}
+		{A9479C42-1C90-4692-85AE-7DCF760D2243} = {B8940B32-1528-4F94-9CE8-6C6F155437FE}
+		{80198106-90EF-4F48-90E6-F54953190510} = {B8940B32-1528-4F94-9CE8-6C6F155437FE}
+		{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E} = {69DD9FB8-DB2D-46A6-A062-D64D250E8E6C}
+		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006} = {A9479C42-1C90-4692-85AE-7DCF760D2243}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF106D73-EF77-46FF-ACF3-60729DA5B89F}

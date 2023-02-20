@@ -52,3 +52,17 @@ services:
     network_mode: "service:search-agent-amadeus"
     depends_on:
       - search-agent-amadeus
+
+  search-results-processor-amadeus:
+    image: ${REGISTRY:-flights-availability}/search.results.processor.amadeus:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: FlightsAvailability.Search.ResultsProcessor.Amadeus/Dockerfile
+    depends_on:      
+      - rabbitmq
+
+  search-results-processor-amadeus-dapr:
+    image: "daprio/daprd:edge"
+    network_mode: "service:search-results-processor-amadeus"
+    depends_on:
+      - search-results-processor-amadeus

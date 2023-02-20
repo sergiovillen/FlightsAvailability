@@ -1,6 +1,6 @@
 ﻿using EventBus.Events;
 
-namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.Events
+namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.Events
 {
     public record AmadeusResponseReceivedEvent : RawIntegrationEvent
     {

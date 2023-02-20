@@ -72,3 +72,22 @@ services:
     volumes:
       - "./dapr/components/:/components"
       - "./dapr/configuration/:/configuration"
+
+  search-results-processor-amadeus:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5140:80"
+      - "50004:50003"
+
+  search-results-processor-amadeus-dapr:
+    command: ["./daprd",
+      "-app-id", "search-results-processor-amadeus",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/flights-availability-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"

@@ -79,6 +79,7 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
                         await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
                         {
                             ParentEventId = @event.Id,
+                            QueryKey = @event.QueryKey,
                             Retry = retry,
                             Response = pollResponse
                         });
