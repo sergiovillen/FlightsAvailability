@@ -1,4 +1,4 @@
-﻿namespace FlightsAvailability.Search.Agent.Amadeus.Entities
+﻿namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.BindingResponses
 {
     public class AmadeusTokenResponse
     {

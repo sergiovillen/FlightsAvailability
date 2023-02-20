@@ -1,4 +1,4 @@
-﻿namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Entities
+﻿namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.BindingResponses
 {
     public class Segment
     {

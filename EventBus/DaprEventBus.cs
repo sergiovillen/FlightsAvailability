@@ -26,7 +26,11 @@ namespace EventBus
         public async Task PublishAsync(IntegrationEvent integrationEvent)
         {
             var topicName = integrationEvent.GetType().Name;
+            await PublishAsync(topicName, integrationEvent);
+        }
 
+        public async Task PublishAsync(string topicName, IntegrationEvent integrationEvent)
+        {
             _logger.LogInformation(
                 "Publishing event {@Event} to {PubsubName}.{TopicName}",
                 integrationEvent,

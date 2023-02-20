@@ -1,13 +1,12 @@
 ﻿using Dapr.Client;
 using EventBus.Abstractions;
 using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.Events;
-using Google.Type;
-using Grpc.Core;
 using System.Text;
-using System;
 using System.Text.Json;
-using FlightsAvailability.Search.Agent.Amadeus.Entities;
+using EventBus.Events;
+using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.BindingResponses;
 using static Google.Rpc.Context.AttributeContext.Types;
+using static Grpc.Core.Metadata;
 
 namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandling
 {
@@ -18,6 +17,7 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
         private const string SECRET_STORE_NAME = "flights-availability-secretstore";
         private const string AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME = "amaudeus-api-client-credentials";
         private const string AMADEUS_API_CONTENT_TYPE = "application/x-www-form-urlencoded";
+        private const int AMADEUS_PARAM_ADULTS = 1;
         private readonly IEventBus _eventBus;
         private readonly ILogger _logger;
         private readonly DaprClient _daprClient;
@@ -42,11 +42,18 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
             var amadeusToken = JsonSerializer.Deserialize<AmadeusTokenResponse>(Encoding.UTF8.GetString(bindingResponse.Data.Span))!;
 
             //Calling Flight Offers
-            var metadata = new Dictionary<string, string>();
-            metadata.Add("Authorization", $"Bearer {amadeusToken.access_token}");
-            metadata.Add("path", "/flight-offers?originLocationCode=MAD&destinationLocationCode=CDG&departureDate=2023-05-02&adults=1&nonStop=false&max=250");
+            var metadata = new Dictionary<string, string>()
+            {
+                {"Authorization", $"Bearer {amadeusToken.access_token}"},
+                {"path", $"/flight-offers?originLocationCode={@event.From}&destinationLocationCode={@event.To}&departureDate={@event.Time.Value.Year}-{@event.Time.Value.Month.ToString("D2")}-{@event.Time.Value.Day.ToString("D2")}&adults={AMADEUS_PARAM_ADULTS}&nonStop=false&max=250"}
+            };
             var searchPollResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_AMADEUS_FLIGHT_OFFERS, "get", string.Empty, (IReadOnlyDictionary<string, string>)metadata);
 
+            await _eventBus.PublishAsync(new AmadeusResponseReceivedEvent()
+            {
+                ParentEventId = @event.Id,
+                RawData = searchPollResponse.ToString()
+            });
         }
     }
 }

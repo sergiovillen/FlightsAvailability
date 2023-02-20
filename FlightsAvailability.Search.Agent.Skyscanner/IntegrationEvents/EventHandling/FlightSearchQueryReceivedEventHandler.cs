@@ -1,6 +1,6 @@
 ﻿using Dapr.Client;
 using EventBus.Abstractions;
-using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Entities;
+using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.BindingResponses;
 using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Events;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
