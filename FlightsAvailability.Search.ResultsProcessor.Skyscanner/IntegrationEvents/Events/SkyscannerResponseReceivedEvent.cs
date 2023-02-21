@@ -7,6 +7,6 @@ namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEven
     {
         public Guid ParentEventId { get; set; }
         public string QueryKey { get; set; }
-        public int Retry { get; set; }
+        public int PollNumber { get; set; }
     }
 }

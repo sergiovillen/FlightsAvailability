@@ -1,6 +1,6 @@
 ﻿namespace FlightsAvailability.Entities
 {
-    public class Time
+    public record Time
     {
         public int Year { get; set; }
         public int Month { get; set; }

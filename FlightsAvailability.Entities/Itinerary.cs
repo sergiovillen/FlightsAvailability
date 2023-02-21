@@ -1,6 +1,6 @@
 ﻿namespace FlightsAvailability.Entities
 {
-    public class Itinerary
+    public record Itinerary
     {
         public List<Segment> Segments { get; set; }
         public int DurationInMinutes { get; set; }

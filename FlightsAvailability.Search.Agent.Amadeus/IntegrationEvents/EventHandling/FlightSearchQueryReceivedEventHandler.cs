@@ -7,6 +7,7 @@ using EventBus.Events;
 using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.BindingResponses;
 using static Google.Rpc.Context.AttributeContext.Types;
 using static Grpc.Core.Metadata;
+using Secrets.Abstractions;
 
 namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandling
 {
@@ -14,26 +15,28 @@ namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandli
     {
         private const string DAPR_BINDING_AMADEUS_GET_TOKEN = "amadeus-token";
         private const string DAPR_BINDING_AMADEUS_FLIGHT_OFFERS = "amadeus-flight-offers";
-        private const string SECRET_STORE_NAME = "flights-availability-secretstore";
         private const string AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME = "amaudeus-api-client-credentials";
         private const string AMADEUS_API_CONTENT_TYPE = "application/x-www-form-urlencoded";
         private const int AMADEUS_PARAM_ADULTS = 1;
         private readonly IEventBus _eventBus;
+        private readonly ISecretsStore _secretsStore;
         private readonly ILogger _logger;
         private readonly DaprClient _daprClient;
 
         public FlightSearchQueryReceivedEventHandler(
             IEventBus eventBus,
+            ISecretsStore secretsStore,
             ILogger<FlightSearchQueryReceivedEventHandler> logger,
             DaprClient daprClient)
         {
             _eventBus = eventBus;
+            _secretsStore = secretsStore;
             _logger = logger;
             _daprClient = daprClient;
         }
         public async Task Handle(FlightSearchQueryReceivedEvent @event)
         {
-            var clientCredentials = await _daprClient.GetSecretAsync(SECRET_STORE_NAME, AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME);
+            var clientCredentials = await _secretsStore.GetSecretAsync(AMADEUS_API_CLIENT_CREDENTIALS_SECRET_NAME);
             string data = $"grant_type=client_credentials&client_id={clientCredentials["client_id"]}&client_secret={clientCredentials["client_secret"]}";
             var req = new BindingRequest(DAPR_BINDING_AMADEUS_GET_TOKEN, "post");
             req.Metadata.Add("Content-Type", AMADEUS_API_CONTENT_TYPE);

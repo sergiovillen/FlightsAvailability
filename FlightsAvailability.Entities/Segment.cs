@@ -1,6 +1,6 @@
 ﻿namespace FlightsAvailability.Entities
 {
-    public class Segment
+    public record Segment
     {
         public Place Departure { get; set; }
         public Place Arrival { get; set; }

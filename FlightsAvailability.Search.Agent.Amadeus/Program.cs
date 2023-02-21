@@ -1,10 +1,11 @@
 using FlightsAvailability.Search.Agent.Amadeus;
 using Healthchecks;
 using HealthChecks.UI.Client;
+using Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 //Dapr
-builder.AddCustomConfiguration();
+builder.AddSecretStoreConfiguration();
 
 // Add services to the container.
 

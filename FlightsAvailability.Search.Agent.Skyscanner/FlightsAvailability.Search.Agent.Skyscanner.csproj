@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\Healthchecks\Healthchecks.csproj" />
+    <ProjectReference Include="..\Secrets\Secrets.csproj" />
   </ItemGroup>
 
 </Project>

@@ -58,29 +58,29 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
             var searchCreateResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_SKYSCANNER_SEARCH_CREATE, "post", data, (IReadOnlyDictionary<string, string>) metadata);
 
             var response = JsonSerializer.Deserialize<SkyscannerResponse>(searchCreateResponse.ToString())!;
-            int retry = 1;
+            int pollNumber = 1;
             await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent() {
                 ParentEventId = @event.Id,
                 QueryKey = @event.QueryKey,
-                Retry = retry,
+                PollNumber = pollNumber,
                 RawData = searchCreateResponse.ToString()
             });
             if (response != null && response.status == SKYSCANNER_RESULT_STATUS_INCOMPLETE)
             {
                 metadata.Add("path", response.sessionToken);
                 var responseStatus = response.status;
-                while (responseStatus == SKYSCANNER_RESULT_STATUS_INCOMPLETE && retry < 3)
+                while (responseStatus == SKYSCANNER_RESULT_STATUS_INCOMPLETE && pollNumber < 3)
                 {
                     try
                     {
-                        retry++;
+                        pollNumber++;
                         var searchPollResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_SKYSCANNER_SEARCH_POLL, "post", string.Empty, (IReadOnlyDictionary<string, string>)metadata);
                         var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(searchPollResponse.ToString())!;
                         await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
                         {
                             ParentEventId = @event.Id,
                             QueryKey = @event.QueryKey,
-                            Retry = retry,
+                            PollNumber = pollNumber,
                             RawData = pollResponse.ToString()
                         });
                         responseStatus = pollResponse.status;

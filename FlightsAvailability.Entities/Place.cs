@@ -1,6 +1,6 @@
 ﻿namespace FlightsAvailability.Entities
 {
-    public class Place
+    public record Place
     {
         public string Iata { get; set; }
     }
