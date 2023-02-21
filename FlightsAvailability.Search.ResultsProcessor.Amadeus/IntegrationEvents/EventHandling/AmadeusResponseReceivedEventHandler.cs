@@ -1,6 +1,8 @@
 ﻿using Dapr.Client;
 using EventBus.Abstractions;
+using FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.BindingResponses;
 using FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.Events;
+using System.Text.Json;
 
 namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.EventHandling
 {
@@ -19,9 +21,9 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
             _logger = logger;
             _daprClient = daprClient;
         }
-        public Task Handle(AmadeusResponseReceivedEvent @event)
+        public async Task Handle(AmadeusResponseReceivedEvent @event)
         {
-            throw new NotImplementedException();
+            var response = JsonSerializer.Deserialize<AmadeusResponse>(@event.RawData.ToString())!;
         }
     }
 }
