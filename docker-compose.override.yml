@@ -78,8 +78,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
     ports:
-      - "5130:80"
-      - "50003:50003"
+      - "5160:80"
+      - "50006:50006"
 
   search-agent-amadeus-dapr:
     command: ["./daprd",
@@ -103,6 +103,25 @@ services:
   search-results-processor-amadeus-dapr:
     command: ["./daprd",
       "-app-id", "search-results-processor-amadeus",
+      "-app-port", "80",
+      "-components-path", "/components",
+      "-config", "/configuration/flights-availability-config.yaml"
+      ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  search-personalization-service:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5170:80"
+      - "50007:50007"
+
+  search-personalization-service-dapr:
+    command: ["./daprd",
+      "-app-id", "search-personalization-service",
       "-app-port", "80",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"

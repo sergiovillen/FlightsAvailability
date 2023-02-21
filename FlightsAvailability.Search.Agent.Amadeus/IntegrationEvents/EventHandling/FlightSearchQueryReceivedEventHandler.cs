@@ -8,6 +8,7 @@ using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.BindingResponse
 using static Google.Rpc.Context.AttributeContext.Types;
 using static Grpc.Core.Metadata;
 using Secrets.Abstractions;
+using FlightsAvailability.Entities.Events;
 
 namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandling
 {

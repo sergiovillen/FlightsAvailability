@@ -1,6 +1,6 @@
 ﻿using EventBus.Events;
 
-namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Events
+namespace FlightsAvailability.Entities.Events
 {
     public record FlightSearchQueryReceivedEvent : IntegrationEvent
     {

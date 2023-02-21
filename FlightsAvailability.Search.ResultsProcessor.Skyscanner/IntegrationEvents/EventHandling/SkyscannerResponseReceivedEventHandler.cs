@@ -1,6 +1,7 @@
 ﻿using Dapr.Client;
 using EventBus.Abstractions;
-using FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.BindingResponses;
+using FlightsAvailability.Entities.Events;
+using FlightsAvailability.Search.Agent.Skyscanner.Contracts;
 using FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.Events;
 using System.Text.Json;
 using static Grpc.Core.Metadata;
@@ -27,6 +28,7 @@ namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEven
             var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(@event.RawData)!;
             var results = new FlightSearchResultsProcessedEvent()
             {
+                SearchProvider = "Skyscanner",
                 ParentEventId = @event.Id,
                 QueryKey = @event.QueryKey,
                 Itineraries = new List<Entities.Itinerary>()

@@ -1,10 +1,10 @@
 ﻿using Dapr;
+using FlightsAvailability.Entities.Events;
 using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHandling;
-using FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightsAvailability.Search.Agent.Skyscanner.Controllers
-{    
+{
     [ApiController]
     [Route("api/[controller]")]
     public class FlightSearchEventController : ControllerBase

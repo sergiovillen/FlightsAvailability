@@ -1,6 +1,6 @@
 ﻿using EventBus.Abstractions;
+using FlightsAvailability.Entities.Events;
 using FlightsAvailability.Search.Service.Dto;
-using FlightsAvailability.Search.Service.IntegrationEvents.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightsAvailability.Search.Service.Controllers

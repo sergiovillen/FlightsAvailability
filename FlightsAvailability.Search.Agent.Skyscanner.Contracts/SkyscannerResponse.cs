@@ -1,6 +1,6 @@
-﻿namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.BindingResponses
+﻿namespace FlightsAvailability.Search.Agent.Skyscanner.Contracts
 {
-    public class Segment
+    public record Segment
     {
         public string originPlaceId { get; set; }
         public string destinationPlaceId { get; set; }
@@ -12,14 +12,14 @@
         public string operatingCarrierId { get; set; }
     }
 
-    public class Itinerary
+    public record Itinerary
     {
         public List<PricingOption> pricingOptions { get; set; }
         public List<string> legIds { get; set; }
         public object sustainabilityData { get; set; }
     }
 
-    public class Leg
+    public record Leg
     {
         public string originPlaceId { get; set; }
         public string destinationPlaceId { get; set; }
@@ -32,7 +32,7 @@
         public List<string> segmentIds { get; set; }
     }
 
-    public class Place
+    public record Place
     {
         public string entityId { get; set; }
         public string parentId { get; set; }
@@ -42,12 +42,12 @@
         public object coordinates { get; set; }
     }
 
-    public class Alliance
+    public record Alliance
     {
         public string name { get; set; }
     }
 
-    public class Carrier
+    public record Carrier
     {
         public string name { get; set; }
         public string allianceId { get; set; }
@@ -55,7 +55,7 @@
         public string iata { get; set; }
     }
 
-    public class Agent
+    public record Agent
     {
         public string name { get; set; }
         public string type { get; set; }
@@ -66,7 +66,7 @@
         public bool isOptimisedForMobile { get; set; }
     }
 
-    public class ArrivalDateTime
+    public record ArrivalDateTime
     {
         public int year { get; set; }
         public int month { get; set; }
@@ -76,26 +76,26 @@
         public int second { get; set; }
     }
 
-    public class Best
+    public record Best
     {
         public double score { get; set; }
         public string itineraryId { get; set; }
     }
 
-    public class Cheapest
+    public record Cheapest
     {
         public double score { get; set; }
         public string itineraryId { get; set; }
     }
 
-    public class Content
+    public record Content
     {
         public Results results { get; set; }
         public Stats stats { get; set; }
         public SortingOptions sortingOptions { get; set; }
     }
 
-    public class DepartureDateTime
+    public record DepartureDateTime
     {
         public int year { get; set; }
         public int month { get; set; }
@@ -105,26 +105,26 @@
         public int second { get; set; }
     }
 
-    public class Direct
+    public record Direct
     {
         public Total total { get; set; }
         public TicketTypes ticketTypes { get; set; }
     }
 
-    public class Fare
+    public record Fare
     {
         public string segmentId { get; set; }
         public string bookingCode { get; set; }
         public string fareBasisCode { get; set; }
     }
 
-    public class Fastest
+    public record Fastest
     {
         public double score { get; set; }
         public string itineraryId { get; set; }
     }
 
-    public class Item
+    public record Item
     {
         public Price price { get; set; }
         public string agentId { get; set; }
@@ -132,7 +132,7 @@
         public List<Fare> fares { get; set; }
     }
 
-    public class Itineraries
+    public record Itineraries
     {
         public int minDuration { get; set; }
         public int maxDuration { get; set; }
@@ -142,39 +142,39 @@
     }
 
 
-    public class MinPrice
+    public record MinPrice
     {
         public string amount { get; set; }
         public string unit { get; set; }
         public string updateStatus { get; set; }
     }
 
-    public class MultiTicketNonNpt
+    public record MultiTicketNonNpt
     {
         public int count { get; set; }
         public MinPrice minPrice { get; set; }
     }
 
-    public class MultiTicketNpt
+    public record MultiTicketNpt
     {
         public int count { get; set; }
         public MinPrice minPrice { get; set; }
     }
 
-    public class OneStop
+    public record OneStop
     {
         public Total total { get; set; }
         public TicketTypes ticketTypes { get; set; }
     }
 
-    public class Price
+    public record Price
     {
         public string amount { get; set; }
         public string unit { get; set; }
         public string updateStatus { get; set; }
     }
 
-    public class PricingOption
+    public record PricingOption
     {
         public Price price { get; set; }
         public List<string> agentIds { get; set; }
@@ -183,7 +183,7 @@
         public string id { get; set; }
     }
 
-    public class RatingBreakdown
+    public record RatingBreakdown
     {
         public double customerService { get; set; }
         public double reliablePrices { get; set; }
@@ -192,7 +192,7 @@
         public double other { get; set; }
     }
 
-    public class Results
+    public record Results
     {
         public Dictionary<string, Itinerary> itineraries { get; set; }
         public Dictionary<string, Leg> legs { get; set; }
@@ -203,7 +203,7 @@
         public Dictionary<string, Alliance> alliances { get; set; }
     }
 
-    public class SkyscannerResponse
+    public record SkyscannerResponse
     {
         public string sessionToken { get; set; }
         public string status { get; set; }
@@ -211,45 +211,45 @@
         public Content content { get; set; }
     }
 
-    public class SingleTicket
+    public record SingleTicket
     {
         public int count { get; set; }
         public MinPrice minPrice { get; set; }
     }
 
-    public class SortingOptions
+    public record SortingOptions
     {
         public List<Best> best { get; set; }
         public List<Cheapest> cheapest { get; set; }
         public List<Fastest> fastest { get; set; }
     }
 
-    public class Stats
+    public record Stats
     {
         public Itineraries itineraries { get; set; }
     }
 
-    public class Stops
+    public record Stops
     {
         public Direct direct { get; set; }
         public OneStop oneStop { get; set; }
         public TwoPlusStops twoPlusStops { get; set; }
     }
 
-    public class TicketTypes
+    public record TicketTypes
     {
         public SingleTicket singleTicket { get; set; }
         public MultiTicketNonNpt multiTicketNonNpt { get; set; }
         public MultiTicketNpt multiTicketNpt { get; set; }
     }
 
-    public class Total
+    public record Total
     {
         public int count { get; set; }
         public MinPrice minPrice { get; set; }
     }
 
-    public class TwoPlusStops
+    public record TwoPlusStops
     {
         public Total total { get; set; }
         public TicketTypes ticketTypes { get; set; }

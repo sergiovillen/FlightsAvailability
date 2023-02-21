@@ -80,3 +80,17 @@ services:
     network_mode: "service:search-results-processor-amadeus"
     depends_on:
       - search-results-processor-amadeus
+
+  search-personalization-service:
+    image: ${REGISTRY:-flights-availability}/search.personalization.service:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: FlightsAvailability.Search.Personalization.Service/Dockerfile
+    depends_on:      
+      - rabbitmq
+
+  search-personalization-service-dapr:
+    image: "daprio/daprd:edge"
+    network_mode: "service:search-personalization-service"
+    depends_on:
+      - search-personalization-service

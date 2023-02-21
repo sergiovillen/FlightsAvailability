@@ -1,5 +1,6 @@
 ﻿using Dapr.Client;
 using EventBus.Abstractions;
+using FlightsAvailability.Entities.Events;
 using FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.BindingResponses;
 using FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.Events;
 using Google.Type;
@@ -28,6 +29,7 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
             var response = JsonSerializer.Deserialize<AmadeusResponse>(@event.RawData.ToString())!;
             var results = new FlightSearchResultsProcessedEvent()
             {
+                SearchProvider = "Amadeus",
                 ParentEventId = @event.Id,
                 QueryKey = @event.QueryKey,
                 Itineraries = new List<Entities.Itinerary>()

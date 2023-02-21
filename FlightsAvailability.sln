@@ -49,11 +49,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Skyscanner", "Skyscanner", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Entities", "FlightsAvailability.Entities\FlightsAvailability.Entities.csproj", "{B1C5A26B-318A-44E7-B934-DB8F5E14BE0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.ResultsProcessor.Amadeus", "FlightsAvailability.Search.ResultsProcessor.Amadeus\FlightsAvailability.Search.ResultsProcessor.Amadeus.csproj", "{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.ResultsProcessor.Amadeus", "FlightsAvailability.Search.ResultsProcessor.Amadeus\FlightsAvailability.Search.ResultsProcessor.Amadeus.csproj", "{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.ResultsProcessor.Skyscanner", "FlightsAvailability.Search.ResultsProcessor.Skyscanner\FlightsAvailability.Search.ResultsProcessor.Skyscanner.csproj", "{7591DBF5-A098-471E-8E62-DE62B6D9586D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.ResultsProcessor.Skyscanner", "FlightsAvailability.Search.ResultsProcessor.Skyscanner\FlightsAvailability.Search.ResultsProcessor.Skyscanner.csproj", "{7591DBF5-A098-471E-8E62-DE62B6D9586D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Secrets", "Secrets\Secrets.csproj", "{846BCD92-8CFF-4235-9E2F-27892F6829FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Secrets", "Secrets\Secrets.csproj", "{846BCD92-8CFF-4235-9E2F-27892F6829FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.Personalization.Service", "FlightsAvailability.Search.Personalization.Service\FlightsAvailability.Search.Personalization.Service.csproj", "{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.Agent.Skyscanner.Contracts", "FlightsAvailability.Search.Agent.Skyscanner.Contracts\FlightsAvailability.Search.Agent.Skyscanner.Contracts.csproj", "{AF25DFFD-0301-463E-965D-B76179872DBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +105,14 @@ Global
 		{846BCD92-8CFF-4235-9E2F-27892F6829FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{846BCD92-8CFF-4235-9E2F-27892F6829FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{846BCD92-8CFF-4235-9E2F-27892F6829FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF25DFFD-0301-463E-965D-B76179872DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF25DFFD-0301-463E-965D-B76179872DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF25DFFD-0301-463E-965D-B76179872DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF25DFFD-0301-463E-965D-B76179872DBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +135,8 @@ Global
 		{C4F5A292-3D1B-4F0D-B1F0-A32BA1291006} = {A9479C42-1C90-4692-85AE-7DCF760D2243}
 		{7591DBF5-A098-471E-8E62-DE62B6D9586D} = {80198106-90EF-4F48-90E6-F54953190510}
 		{846BCD92-8CFF-4235-9E2F-27892F6829FD} = {69DD9FB8-DB2D-46A6-A062-D64D250E8E6C}
+		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD} = {12416715-BBA7-4DE1-A765-0DA3E31B3CCC}
+		{AF25DFFD-0301-463E-965D-B76179872DBA} = {80198106-90EF-4F48-90E6-F54953190510}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF106D73-EF77-46FF-ACF3-60729DA5B89F}

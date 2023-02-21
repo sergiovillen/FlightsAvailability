@@ -1,5 +1,4 @@
 ﻿using EventBus.Events;
-using FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.BindingResponses;
 
 namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEvents.Events
 {

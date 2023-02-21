@@ -1,4 +1,5 @@
 ﻿using Dapr;
+using FlightsAvailability.Entities.Events;
 using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.EventHandling;
 using FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.Events;
 using Microsoft.AspNetCore.Mvc;

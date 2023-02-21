@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EventBus\EventBus.csproj" />
+    <ProjectReference Include="..\FlightsAvailability.Entities\FlightsAvailability.Entities.csproj" />
+    <ProjectReference Include="..\FlightsAvailability.Search.Agent.Skyscanner.Contracts\FlightsAvailability.Search.Agent.Skyscanner.Contracts.csproj" />
     <ProjectReference Include="..\Healthchecks\Healthchecks.csproj" />
     <ProjectReference Include="..\Secrets\Secrets.csproj" />
   </ItemGroup>
