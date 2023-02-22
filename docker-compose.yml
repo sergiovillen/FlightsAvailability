@@ -6,7 +6,15 @@ services:
     image: rabbitmq:3-management-alpine
 
   redis:
-    image: redis:alpine
+    image: redislabs/redismod
+    ports:
+      - 6379:6379
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - "8001:8001"
+    volumes:
+      - "./dapr/components/:/db"
 
   zipkin:
     image: openzipkin/zipkin-slim

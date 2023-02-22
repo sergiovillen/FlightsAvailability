@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 		dapr\components\flights-availability-pubsub.yaml = dapr\components\flights-availability-pubsub.yaml
 		dapr\components\flights-availability-secrets.json = dapr\components\flights-availability-secrets.json
 		dapr\components\flights-availability-secretstore.yaml = dapr\components\flights-availability-secretstore.yaml
+		dapr\components\flights-availability-statestore.yaml = dapr\components\flights-availability-statestore.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{D0B1CBD1-1129-4847-8579-6935158E49D3}"

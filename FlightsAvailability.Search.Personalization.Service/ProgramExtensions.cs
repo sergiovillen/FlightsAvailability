@@ -1,6 +1,7 @@
 ﻿using EventBus;
 using EventBus.Abstractions;
 using FlightsAvailability.Search.Personalization.Service.IntegrationEvents.EventHandling;
+using FlightsAvailability.Search.Personalization.Service.Repositories;
 using Healthchecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Secrets;
@@ -27,6 +28,7 @@ namespace FlightsAvailability.Search.Personalization.Service
             builder.Services.AddScoped<IEventBus, DaprEventBus>();
             builder.Services.AddScoped<ISecretsStore, DaprSecretsStore>();
             builder.Services.AddScoped<FlightSearchResultsProcessedEventHandler>();
+            builder.Services.AddScoped<IFlightSearchResultsRepository, FlightSearchResultsRepository>();
         }
     }
 }
