@@ -1,6 +1,6 @@
 ﻿namespace FlightsAvailability.Search.Agent.Amadeus.IntegrationEvents.BindingResponses
 {
-    public class AmadeusTokenResponse
+    public record AmadeusTokenResponse
     {
         public string type { get; set; }
         public string username { get; set; }

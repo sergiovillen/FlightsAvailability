@@ -2,14 +2,14 @@
 
 namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.BindingResponses
 {
-    public class AmadeusResponse
+    public record AmadeusResponse
     {
         public Meta meta { get; set; }
         public List<FlightOffer> data { get; set; }
         public Dictionaries dictionaries { get; set; }
     }
 
-    public class Dictionaries
+    public record Dictionaries
     {
         public Dictionary<string, Location> locations { get; set; }
         public Dictionary<string, string> aircraft { get; set; }
@@ -17,13 +17,13 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public Dictionary<string, string> carriers { get; set; }
     }
 
-    public class Location
+    public record Location
     {
         public string cityCode { get; set; }
         public string countryCode { get; set; }
     }
 
-    public class FlightOffer
+    public record FlightOffer
     {
         public string type { get; set; }
         public string id { get; set; }
@@ -40,7 +40,7 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public List<TravelerPricing> travelerPricings { get; set; }
     }
 
-    public class TravelerPricing
+    public record TravelerPricing
     {
         public string travelerId { get; set; }
         public string fareOption { get; set; }
@@ -49,7 +49,7 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public List<FareDetailsBySegment> fareDetailsBySegment { get; set; }
     }
 
-    public class FareDetailsBySegment
+    public record FareDetailsBySegment
     {
         public string segmentId { get; set; }
         public string cabin { get; set; }
@@ -59,18 +59,18 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public IncludedCheckedBags includedCheckedBags { get; set; }
     }
 
-    public class IncludedCheckedBags
+    public record IncludedCheckedBags
     {
         public int quantity { get; set; }
     }
 
-    public class PricingOptions
+    public record PricingOptions
     {
         public List<string> fareType { get; set; }
         public bool includedCheckedBagsOnly { get; set; }
     }
 
-    public class Price
+    public record Price
     {
         public string currency { get; set; }
         public string total { get; set; }
@@ -80,25 +80,25 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public List<AdditionalService> additionalServices { get; set; }
     }
 
-    public class AdditionalService
+    public record AdditionalService
     {
         public string amount { get; set; }
         public string type { get; set; }
     }
 
-    public class Fee
+    public record Fee
     {
         public string amount { get; set; }
         public string type { get; set; }
     }
 
-    public class Itinerary
+    public record Itinerary
     {
         public string duration { get; set; }
         public List<Segment> segments { get; set; }
     }
 
-    public class Segment
+    public record Segment
     {
         public Departure departure { get; set; }
         public Arrival arrival { get; set; }
@@ -112,37 +112,37 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
         public bool blacklistedInEU { get; set; }
     }
 
-    public class Operating
+    public record Operating
     {
         public string carrierCode { get; set; }
     }
 
-    public class Aircraft
+    public record Aircraft
     { 
         public string code { get; set; }
     }
 
-        public class Departure
+        public record Departure
     {
         public string iataCode { get; set; }
         public string terminal { get; set; }
         public DateTime at { get; set; }
     }
 
-    public class Arrival
+    public record Arrival
     {
         public string iataCode { get; set; }
         public string terminal { get; set; }
         public DateTime at { get; set; }
     }
 
-    public class Meta
+    public record Meta
     {
         public int count { get; set; }
         public Links links { get; set; }
     }
 
-    public class Links
+    public record Links
     {
         public string self { get; set; }
     }

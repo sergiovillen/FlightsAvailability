@@ -29,7 +29,7 @@ namespace FlightsAvailability.Search.Personalization.Service.IntegrationEvents.E
             await _searchResultsRepository.UpdateAsync(new Models.FlightSearchResults()
             {
                 QueryKey= @event.QueryKey,
-                Itineraries = @event.Itineraries.OrderBy(i => i.Price.Amount)
+                Itineraries = @event?.Itineraries?.OrderBy(i => i.Price?.Amount)
                                                 .ToList()
             });
         }

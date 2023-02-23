@@ -25,60 +25,67 @@ namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEven
         }
         public async Task Handle(SkyscannerResponseReceivedEvent @event)
         {
-            var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(@event.RawData)!;
-            var results = new FlightSearchResultsProcessedEvent()
+            try
             {
-                SearchProvider = "Skyscanner",
-                ParentEventId = @event.Id,
-                QueryKey = @event.QueryKey,
-                Itineraries = new List<Entities.Itinerary>()
-            };
-            foreach(var rawItinerary in pollResponse.content.results.itineraries)
-            {
-                var itinerary = new Entities.Itinerary() { Segments = new List<Entities.Segment>() };
-                var legId = rawItinerary.Value.legIds[0];
-                var leg = pollResponse.content.results.legs[legId];
-                itinerary.DurationInMinutes = leg.durationInMinutes;
-                foreach(var rawSegmentId in leg.segmentIds)
+                var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(@event.RawData);
+                var results = new FlightSearchResultsProcessedEvent()
                 {
-                    var rawSegment = pollResponse.content.results.segments[rawSegmentId];
-                    var segment = new Entities.Segment();
-                    segment.DurationInMinutes = rawSegment.durationInMinutes;
-                    segment.ArrivalTime = new Entities.Time()
+                    SearchProvider = "Skyscanner",
+                    ParentEventId = @event.Id,
+                    QueryKey = @event.QueryKey,
+                    Itineraries = new List<Entities.Itinerary>()
+                };
+                foreach (var rawItinerary in pollResponse.content.results.itineraries)
+                {
+                    var itinerary = new Entities.Itinerary() { Segments = new List<Entities.Segment>() };
+                    var legId = rawItinerary.Value.legIds[0];
+                    var leg = pollResponse.content.results.legs[legId];
+                    itinerary.DurationInMinutes = leg.durationInMinutes;
+                    foreach (var rawSegmentId in leg.segmentIds)
                     {
-                        Year = rawSegment.arrivalDateTime.year,
-                        Month = rawSegment.arrivalDateTime.month,
-                        Day = rawSegment.arrivalDateTime.day,
-                        Hour = rawSegment.arrivalDateTime.hour,
-                        Minute = rawSegment.arrivalDateTime.minute,
-                        Second = rawSegment.arrivalDateTime.second
-                    };
-                    segment.DepartureTime = new Entities.Time()
-                    {
-                        Year = rawSegment.departureDateTime.year,
-                        Month = rawSegment.departureDateTime.month,
-                        Day = rawSegment.departureDateTime.day,
-                        Hour = rawSegment.departureDateTime.hour,
-                        Minute = rawSegment.departureDateTime.minute,
-                        Second = rawSegment.departureDateTime.second
-                    };
-                    segment.Arrival = new Entities.Place()
-                    {
-                        Iata = pollResponse.content.results.places[rawSegment.destinationPlaceId].iata
-                    };
-                    segment.Departure = new Entities.Place()
-                    {
-                        Iata = pollResponse.content.results.places[rawSegment.originPlaceId].iata
-                    };
-                    segment.Number = rawSegment.marketingFlightNumber;
-                    segment.CarrierCode = pollResponse.content.results.carriers[rawSegment.marketingCarrierId].iata;
-                    itinerary.Segments.Add(segment);
+                        var rawSegment = pollResponse.content.results.segments[rawSegmentId];
+                        var segment = new Entities.Segment();
+                        segment.DurationInMinutes = rawSegment.durationInMinutes;
+                        segment.ArrivalTime = new Entities.Time()
+                        {
+                            Year = rawSegment.arrivalDateTime.year,
+                            Month = rawSegment.arrivalDateTime.month,
+                            Day = rawSegment.arrivalDateTime.day,
+                            Hour = rawSegment.arrivalDateTime.hour,
+                            Minute = rawSegment.arrivalDateTime.minute,
+                            Second = rawSegment.arrivalDateTime.second
+                        };
+                        segment.DepartureTime = new Entities.Time()
+                        {
+                            Year = rawSegment.departureDateTime.year,
+                            Month = rawSegment.departureDateTime.month,
+                            Day = rawSegment.departureDateTime.day,
+                            Hour = rawSegment.departureDateTime.hour,
+                            Minute = rawSegment.departureDateTime.minute,
+                            Second = rawSegment.departureDateTime.second
+                        };
+                        segment.Arrival = new Entities.Place()
+                        {
+                            Iata = pollResponse.content.results.places[rawSegment.destinationPlaceId].iata
+                        };
+                        segment.Departure = new Entities.Place()
+                        {
+                            Iata = pollResponse.content.results.places[rawSegment.originPlaceId].iata
+                        };
+                        segment.Number = rawSegment.marketingFlightNumber;
+                        segment.CarrierCode = pollResponse.content.results.carriers[rawSegment.marketingCarrierId].iata;
+                        itinerary.Segments.Add(segment);
+                    }
+
+                    results.Itineraries.Add(itinerary);
                 }
-
-                results.Itineraries.Add(itinerary);
+                await _eventBus.PublishAsync(results);
             }
-            await _eventBus.PublishAsync(results);
-
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "SkyscannerResponseReceivedEventHandler");
+                throw;
+            }
         }
     }
 }

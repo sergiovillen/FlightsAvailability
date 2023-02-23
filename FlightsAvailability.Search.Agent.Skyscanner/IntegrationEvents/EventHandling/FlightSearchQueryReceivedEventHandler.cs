@@ -60,7 +60,8 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
 
             var response = JsonSerializer.Deserialize<SkyscannerResponse>(searchCreateResponse.ToString())!;
             int pollNumber = 1;
-            await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent() {
+            _ = _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
+            {
                 ParentEventId = @event.Id,
                 QueryKey = @event.QueryKey,
                 PollNumber = pollNumber,
@@ -77,12 +78,12 @@ namespace FlightsAvailability.Search.Agent.Skyscanner.IntegrationEvents.EventHan
                         pollNumber++;
                         var searchPollResponse = await _daprClient.InvokeBindingAsync<object, dynamic>(DAPR_BINDING_SKYSCANNER_SEARCH_POLL, "post", string.Empty, (IReadOnlyDictionary<string, string>)metadata);
                         var pollResponse = JsonSerializer.Deserialize<SkyscannerResponse>(searchPollResponse.ToString())!;
-                        await _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
+                        _ = _eventBus.PublishAsync(new SkyscannerResponseReceivedEvent()
                         {
                             ParentEventId = @event.Id,
                             QueryKey = @event.QueryKey,
                             PollNumber = pollNumber,
-                            RawData = pollResponse.ToString()
+                            RawData = searchPollResponse.ToString()
                         });
                         responseStatus = pollResponse.status;
                     }

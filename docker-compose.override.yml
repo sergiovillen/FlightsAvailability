@@ -23,6 +23,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-service",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]
@@ -42,6 +44,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-agent-skyscanner",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]
@@ -61,6 +65,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-results-processor-skyscanner",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]
@@ -80,6 +86,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-agent-amadeus",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]
@@ -99,6 +107,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-results-processor-amadeus",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]
@@ -118,6 +128,8 @@ services:
     command: ["./daprd",
       "-app-id", "search-personalization-service",
       "-app-port", "80",
+      "-log-level", "info",
+      "-log-as-json",
       "-components-path", "/components",
       "-config", "/configuration/flights-availability-config.yaml"
       ]

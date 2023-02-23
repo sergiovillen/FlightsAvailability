@@ -16,6 +16,11 @@ services:
     volumes:
       - "./dapr/components/:/db"
 
+  dapr-dashboard:
+    image: ghcr.io/dapr/dashboard:latest
+    ports:
+      - 8000:8080
+
   zipkin:
     image: openzipkin/zipkin-slim
 
