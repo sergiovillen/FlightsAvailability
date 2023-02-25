@@ -25,7 +25,16 @@ namespace FlightsAvailability.Search.Personalization.Service.Repositories
         public async Task<FlightSearchResults> UpdateAsync(FlightSearchResults searchResults)
         {
             var state = await _daprClient.GetStateEntryAsync<FlightSearchResults>(StateStoreName, searchResults.QueryKey);
-            state.Value = searchResults;
+            if (state.Value == null)
+            {
+                searchResults.CreationDate = DateTime.UtcNow;
+                state.Value = searchResults;
+            }
+            else
+            {
+                searchResults.UpdateDate = DateTime.UtcNow;
+                state.Value.Itineraries.AddRange(searchResults.Itineraries);
+            }
 
             await state.SaveAsync();
 

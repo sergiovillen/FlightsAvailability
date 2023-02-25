@@ -37,7 +37,10 @@ namespace FlightsAvailability.Search.ResultsProcessor.Skyscanner.IntegrationEven
                 };
                 foreach (var rawItinerary in pollResponse.content.results.itineraries)
                 {
-                    var itinerary = new Entities.Itinerary() { Segments = new List<Entities.Segment>() };
+                    var itinerary = new Entities.Itinerary() { 
+                        SearchProvider = results.SearchProvider, 
+                        Segments = new List<Entities.Segment>() 
+                    };
                     var legId = rawItinerary.Value.legIds[0];
                     var leg = pollResponse.content.results.legs[legId];
                     itinerary.DurationInMinutes = leg.durationInMinutes;

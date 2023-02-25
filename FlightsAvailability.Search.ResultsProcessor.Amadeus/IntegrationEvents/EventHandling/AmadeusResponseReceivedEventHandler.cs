@@ -39,6 +39,7 @@ namespace FlightsAvailability.Search.ResultsProcessor.Amadeus.IntegrationEvents.
                 foreach(var rawItinerary in rawFlightOffer.itineraries)
                 {
                     var itinerary = new Entities.Itinerary();
+                    itinerary.SearchProvider = results.SearchProvider;
                     itinerary.DurationInMinutes = (int)XmlConvert.ToTimeSpan(rawItinerary.duration).TotalMinutes;
                     itinerary.Price = new Entities.Price() { Amount = double.Parse(rawFlightOffer.price.grandTotal), Currency = rawFlightOffer.price.currency };
                     itinerary.Segments = new List<Entities.Segment>();
