@@ -39,10 +39,11 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_CONTAINER_REGISTRY: ${{ vars.AZURE_CONTAINER_REGISTRY }}
-  CONTAINER_NAME: ${{ vars.CONTAINER_NAME }}
-  RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP }}
-  CLUSTER_NAME: ${{ vars.CLUSTER_NAME }}
+  AZURE_CONTAINER_REGISTRY: azcontainerregistrysergiovillen
+  CONTAINER_NAME: rabbitmq
+  RESOURCE_GROUP: devops-ressources-rg
+  CLUSTER_NAME: flights-availability-aks-cluster
+  CLUSTER_RESOURCE_GROUP: flights-availability-rg
   CHART_PATH: "/deploy/charts/rabbitmq/charts.yaml"
   CHART_OVERRIDE_PATH: "/deploy/charts/rabbitmq/values.yaml"
 
@@ -96,7 +97,7 @@ jobs:
       - name: Get K8s context
         uses: azure/aks-set-context@v3
         with:
-          resource-group: ${{ env.RESOURCE_GROUP }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
           cluster-name: ${{ env.CLUSTER_NAME }}
           admin: 'false'
           use-kubelogin: 'true'
