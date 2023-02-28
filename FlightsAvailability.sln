@@ -58,7 +58,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Secrets", "Secrets\Secrets.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.Personalization.Service", "FlightsAvailability.Search.Personalization.Service\FlightsAvailability.Search.Personalization.Service.csproj", "{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsAvailability.Search.Agent.Skyscanner.Contracts", "FlightsAvailability.Search.Agent.Skyscanner.Contracts\FlightsAvailability.Search.Agent.Skyscanner.Contracts.csproj", "{AF25DFFD-0301-463E-965D-B76179872DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightsAvailability.Search.Agent.Skyscanner.Contracts", "FlightsAvailability.Search.Agent.Skyscanner.Contracts\FlightsAvailability.Search.Agent.Skyscanner.Contracts.csproj", "{AF25DFFD-0301-463E-965D-B76179872DBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apim", "apim", "{7612B32F-B7C2-486B-9E3B-BBAD6066093A}"
+	ProjectSection(SolutionItems) = preProject
+		apim\api.yaml = apim\api.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

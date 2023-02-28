@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: flights-availability-apim
+  version: '1.0'
+servers:
+  - url: http://flights-availability-apim.azure-api.net
+  - url: https://flights-availability-apim.azure-api.net
+paths:
+  /flights-search:
+    post:
+      summary: Flights search service
+      description: Invoke service using Dapr API
+      operationId: flights-search
+      requestBody:
+        content:
+          application/json:
+            example:
+              from: MAD
+              to: CDG
+              time: "2023-06-22T10:43:07.781Z"
+      responses:
+        '200':
+          description: ''
