@@ -1,10 +1,7 @@
 name: Search Service - Build Docker Image and Push to ACR
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch:
 env:
   IMAGE_NAME: search-service
   DOCKER_FILE_PATH: FlightsAvailability.Search.Service/Dockerfile
