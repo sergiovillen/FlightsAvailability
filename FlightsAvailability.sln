@@ -65,6 +65,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apim", "apim", "{7612B32F-B
 		apim\api.yaml = apim\api.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{6D606DF3-0428-4786-BD0D-21375A323EF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "search-service", "search-service", "{AFAF6AF9-F433-44AB-AEB2-8F036C1FE552}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\search-service\.helmignore = deploy\search-service\.helmignore
+		deploy\search-service\Chart.yaml = deploy\search-service\Chart.yaml
+		deploy\search-service\values.yaml = deploy\search-service\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "charts", "charts", "{E15417D3-1B06-4347-8648-326729644351}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{AD9B6D64-986C-47B2-A4BB-5686CB91E20E}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\search-service\templates\deployment.yaml = deploy\search-service\templates\deployment.yaml
+		deploy\search-service\templates\hpa.yaml = deploy\search-service\templates\hpa.yaml
+		deploy\search-service\templates\ingress.yaml = deploy\search-service\templates\ingress.yaml
+		deploy\search-service\templates\NOTES.txt = deploy\search-service\templates\NOTES.txt
+		deploy\search-service\templates\service.yaml = deploy\search-service\templates\service.yaml
+		deploy\search-service\templates\serviceaccount.yaml = deploy\search-service\templates\serviceaccount.yaml
+		deploy\search-service\templates\_helpers.tpl = deploy\search-service\templates\_helpers.tpl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{420DFFAC-F8BA-4750-A2C9-C94947441731}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\search-service\templates\tests\test-connection.yaml = deploy\search-service\templates\tests\test-connection.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +170,10 @@ Global
 		{846BCD92-8CFF-4235-9E2F-27892F6829FD} = {69DD9FB8-DB2D-46A6-A062-D64D250E8E6C}
 		{C26B68FF-A4E6-4EE0-B5CD-D60387B06CBD} = {12416715-BBA7-4DE1-A765-0DA3E31B3CCC}
 		{AF25DFFD-0301-463E-965D-B76179872DBA} = {80198106-90EF-4F48-90E6-F54953190510}
+		{AFAF6AF9-F433-44AB-AEB2-8F036C1FE552} = {6D606DF3-0428-4786-BD0D-21375A323EF5}
+		{E15417D3-1B06-4347-8648-326729644351} = {AFAF6AF9-F433-44AB-AEB2-8F036C1FE552}
+		{AD9B6D64-986C-47B2-A4BB-5686CB91E20E} = {AFAF6AF9-F433-44AB-AEB2-8F036C1FE552}
+		{420DFFAC-F8BA-4750-A2C9-C94947441731} = {AD9B6D64-986C-47B2-A4BB-5686CB91E20E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF106D73-EF77-46FF-ACF3-60729DA5B89F}
