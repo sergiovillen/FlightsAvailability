@@ -39,9 +39,10 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  namespace: flights-availability
 
-#ingress:
-#  enabled: false
+ingress:
+  enabled: false
 #  className: ""
 #  annotations: {}
 #    # kubernetes.io/ingress.class: nginx
