@@ -48,6 +48,7 @@ env:
   CLUSTER_NAME: "flights-availability-aks-cluster"
   CHART_PATH: "your-chart-path"
   CHART_OVERRIDE_PATH: "your-chart-override-path"
+  NAMESPACE: "flights-availability"
 
 jobs:
   buildImage:
@@ -126,6 +127,7 @@ jobs:
         uses: Azure/k8s-deploy@v4
         with:
           action: deploy
+          namespace: ${{ env.NAMESPACE }}
           manifests: ${{ steps.bake.outputs.manifestsBundle }}
           images: |
             ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
