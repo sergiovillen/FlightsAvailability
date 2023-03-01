@@ -86,9 +86,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{420DFFAC-F8BA-4750-A2C9-C94947441731}"
-	ProjectSection(SolutionItems) = preProject
-		deploy\search-service\templates\tests\test-connection.yaml = deploy\search-service\templates\tests\test-connection.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

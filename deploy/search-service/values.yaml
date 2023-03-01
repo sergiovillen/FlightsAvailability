@@ -12,7 +12,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: "search-service"
-fullnameOverride: "search-service-chart"
+fullnameOverride: "search-service"
 
 serviceAccount:
   # Specifies whether a service account should be created
