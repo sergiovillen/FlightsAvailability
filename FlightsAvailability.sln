@@ -79,8 +79,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{AD9B6D64-986C-47B2-A4BB-5686CB91E20E}"
 	ProjectSection(SolutionItems) = preProject
 		deploy\search-service\templates\deployment.yaml = deploy\search-service\templates\deployment.yaml
-		deploy\search-service\templates\hpa.yaml = deploy\search-service\templates\hpa.yaml
-		deploy\search-service\templates\ingress.yaml = deploy\search-service\templates\ingress.yaml
 		deploy\search-service\templates\NOTES.txt = deploy\search-service\templates\NOTES.txt
 		deploy\search-service\templates\service.yaml = deploy\search-service\templates\service.yaml
 		deploy\search-service\templates\serviceaccount.yaml = deploy\search-service\templates\serviceaccount.yaml
